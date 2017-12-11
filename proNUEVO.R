@@ -1,6 +1,6 @@
-#################################################
-######## INTENTO 2 / PROYECTO DE SIMULACION #####
-#################################################
+###################################################
+######## PROYECTO DE SIMULACION -- SECUENCIAL #####
+###################################################
 
 cant.paradas <- 4 #cantidad de paradas
 #cant.paradas <- cant.paradas+1
@@ -26,7 +26,8 @@ camiones[,2]<- cap.camion
 camiones <- data.frame(camiones)
 colnames(camiones) <- c("pos", "cap", 1:cant.paradas)
 #-----------------------------
-tmax <- 5* sum(Paradas$t.entre.paradas[1:cant.paradas]) #duracion de la simulacion 
+#tmax <- 5* sum(Paradas$t.entre.paradas[1:cant.paradas]) #duracion de la simulacion
+tmax <- 1000 #duracion de la simulacion
 pa <- 0.01 #probabilidad de accidentes
 pv <- 0.02 #probabilidad de anticipasion
 #-----------------------------
@@ -45,6 +46,7 @@ cant.camiones <- 1 #iniciamos con un camion
 t.nvo.camion <- 10 #tiempo en que se libera un camion
 
 #######INICIA SIMULACION#############
+tiempoInicial <- Sys.time()
 for(i in 1:tmax){
   #i=100
   if(i%%t.nvo.camion == 0){#verifica si podemos liberar un camion
@@ -184,4 +186,6 @@ for(i in 1:tmax){
     break
   }
 }
+tiempoFinal <- Sys.time()
+tiempoEjecucion <- tiempoFinal - tiempoInicial
 T.Espera <- T.Espera[-1,]
